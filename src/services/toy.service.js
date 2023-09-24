@@ -64,7 +64,7 @@ function getEmptyToy() {
     return {
         name: 'toy',
         price: 123,
-        labels: ['Doll', 'Battery Powered', 'Baby'],
+        labels: [],
         // createdAt: Date.now(),
         inStock: true,
     }

@@ -1,11 +1,14 @@
 import { toyService } from "../services/toy.service.js"
 import { saveToy } from "../store/actions/toy.actions.js"
-import { showErrorMsg ,showSuccessMsg} from "../services/event-bus.service.js"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { LabelPicker } from "../cmps/LabelPicker.jsx"
 
 export function ToyEdit() {
 
+    const labels = useSelector(storeState => storeState.toyModule.labels)
     const [toyToEdit, setToyToEdit] = useState(toyService.getEmptyToy())
     const navigate = useNavigate()
     const params = useParams()
@@ -32,10 +35,10 @@ export function ToyEdit() {
     function onSaveToy(ev) {
         ev.preventDefault()
         saveToy(toyToEdit)
-        .then(() => {
-            navigate('/toy')
-            setToyToEdit(toyService.getEmptyToy())
-        })
+            .then(() => {
+                navigate('/toy')
+                setToyToEdit(toyService.getEmptyToy())
+            })
             .catch(err => {
                 console.log('Cannot update toy', err)
                 showErrorMsg('Cannot update toy')
@@ -44,7 +47,7 @@ export function ToyEdit() {
     }
 
 
-    const { name, price } = toyToEdit
+    const { name, price , labels:toyLabels} = toyToEdit
 
     return (
         <section className="toy-edit">
@@ -54,7 +57,7 @@ export function ToyEdit() {
                 <input onChange={handleChange} type="text" name="name" value={name} id="name" />
                 <label htmlFor="price">Price:</label>
                 <input onChange={handleChange} type="text" name="price" value={price} id="price" />
-
+                <LabelPicker labels={labels} setToyToEdit={setToyToEdit} toyLabels={toyLabels}/>
                 {toyToEdit._id ? <button>Save</button> : <button>Add</button>}
             </form>
         </section>

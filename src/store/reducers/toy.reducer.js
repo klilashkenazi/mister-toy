@@ -11,8 +11,8 @@ export const SET_FILTER_BY = 'SET_FILTER_BY'
 const initialState = {
     toys: [],
     filterBy: toyService.getDefaultFilter(),
-    labels: ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle']
-        // 'Outdoor', 'Battery Powered']
+    labels: ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle',
+        'Outdoor', 'Battery Powered']
 }
 
 export function toyReducer(state = initialState, action = {}) {

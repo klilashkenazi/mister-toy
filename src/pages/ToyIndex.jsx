@@ -6,6 +6,7 @@ import { ToyList } from '../cmps/ToyList'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { ToyFilter } from '../cmps/ToyFilter'
 import { SET_FILTER_BY } from '../store/reducers/toy.reducer'
+import { Link } from 'react-router-dom'
 
 export function ToyIndex() {
     const dispatch = useDispatch()
@@ -32,24 +33,25 @@ export function ToyIndex() {
             })
     }
 
-    function onAddToy() {
-        const toyToSave = toyService.getEmptyToy()
-        saveToy(toyToSave)
-            .then(savedToy => {
-                showSuccessMsg(`Toy added (id: ${savedToy._id})`)
-            })
-            .catch(err => {
-                console.log('Cannot add toy', err)
-                showErrorMsg('Cannot add toy')
-            })
-    }
+    // function onAddToy() {
+    //     const toyToSave = toyService.getEmptyToy()
+    //     saveToy(toyToSave)
+    //         .then(savedToy => {
+    //             showSuccessMsg(`Toy added (id: ${savedToy._id})`)
+    //         })
+    //         .catch(err => {
+    //             console.log('Cannot add toy', err)
+    //             showErrorMsg('Cannot add toy')
+    //         })
+    // }
     function onSetFilter(filterBy) {
         dispatch({ type: SET_FILTER_BY, filterBy })
     }
 
     return (
         <div>
-            <button onClick={onAddToy}>Add toy</button>
+            <button><Link to={`/toy/edit`}>Add toy</Link></button>
+            {/* <button onClick={onAddToy}>Add toy</button> */}
             <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} labels={labels}/>
             <ToyList toys={toys} onRemoveToy={onRemoveToy} />
         </div>
