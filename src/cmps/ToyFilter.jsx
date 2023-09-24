@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react"
 import { toyService } from "../services/toy.service.js"
 import { utilService } from "../services/util.service.js"
+import { LabelFilter } from "./LabelFilter.jsx"
 
 
 export function ToyFilter({ filterBy, onSetFilter, labels }) {
@@ -63,7 +64,7 @@ export function ToyFilter({ filterBy, onSetFilter, labels }) {
                     value={filterByToEdit.inStock}
                     onChange={handleChange} />
 
-                <label htmlFor="labels">Labels:</label>
+                {/* <label htmlFor="labels">Labels:</label>
                 <select id="labels"
                     name="label"
                     value={filterByToEdit.label}
@@ -72,7 +73,17 @@ export function ToyFilter({ filterBy, onSetFilter, labels }) {
                     {labels.map(label => {
                         return <option key={label} value={label}>{label}</option>
                     })}
+                </select> */}
+                <label htmlFor="sort">Sort by:</label>
+                <select id="sort"
+                    name="sortBy"
+                    value={filterByToEdit.sortBy}
+                    onChange={handleChange}>
+                    <option value="">Default</option>
+                    <option value="price">Price</option>
+
                 </select>
+                <LabelFilter labels={labels} setFilterByToEdit={setFilterByToEdit}/>
             </form>
 
         </section>

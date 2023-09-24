@@ -6,6 +6,7 @@ import { ToyList } from '../cmps/ToyList'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { ToyFilter } from '../cmps/ToyFilter'
 import { SET_FILTER_BY } from '../store/reducers/toy.reducer'
+
 export function ToyIndex() {
     const dispatch = useDispatch()
     const toys = useSelector(storeState => storeState.toyModule.toys)

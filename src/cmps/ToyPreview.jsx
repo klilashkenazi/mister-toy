@@ -6,10 +6,9 @@ export function ToyPreview({ toy, onRemoveToy }) {
             <h1>Name: {toy.name}</h1>
             <h5>Price: ${toy.price}</h5>
             <ul>Labels:
-                {toy.labels.map(label =>
-                    <li key={label}>{label}</li>)}
+                {toy.labels.map(label =><li key={label}>{label}</li>)}
             </ul>
-            {!toy.inStock && <h3>Out of stock</h3>}
+            {!toy.inStock && <h4>Out of stock</h4>}
             <button><Link to={`/toy/${toy._id}`}>Details</Link></button>
             <button onClick={() => { onRemoveToy(toy._id) }}>x</button>
             <button> <Link to={`/toy/edit/${toy._id}`}>Edit</Link></button>

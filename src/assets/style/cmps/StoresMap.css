@@ -1,0 +1,7 @@
+.stores {
+    display: flex;
+    gap: 2em;
+}
+.stores >*{
+    cursor: pointer;
+}
