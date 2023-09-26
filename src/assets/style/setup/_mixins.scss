@@ -1,0 +1,14 @@
+@mixin btn() {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: em(24px) em(44px);
+    line-height: 1.25;
+    font-size: em(14px);
+    font-variation-settings: "wght" 430;
+    border: none;
+    cursor: pointer;
+    background-color: $clr1;
+    transition: background-color 0.2s;
+}

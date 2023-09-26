@@ -1,0 +1,22 @@
+.toy-preview {
+    border: 1px solid $clr2;
+    border-radius: 10px;
+    list-style: none;
+    padding: 1em;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    display: grid;
+    place-items: center;
+
+    .preview-btn {
+        padding-block-start: 1em;
+        display: flex;
+        justify-content: space-around;
+
+        .btn {
+            width: fit-content ;
+        }
+    }
+    .out-of-stock{
+        color: red;
+    }
+}

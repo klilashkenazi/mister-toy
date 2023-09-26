@@ -27,8 +27,9 @@ export function ToyEdit() {
             })
     }
     function handleChange({ target }) {
-        const value = target.value
+        let value = target.value
         const field = target.name
+        if (target.type === 'checkbox') value = target.checked
         setToyToEdit(prevToy => ({ ...prevToy, [field]: value }))
     }
 
@@ -46,8 +47,8 @@ export function ToyEdit() {
 
     }
 
-
-    const { name, price , labels:toyLabels} = toyToEdit
+    console.log(toyToEdit)
+    const { name, price, labels: toyLabels, inStock} = toyToEdit
 
     return (
         <section className="toy-edit">
@@ -57,7 +58,9 @@ export function ToyEdit() {
                 <input onChange={handleChange} type="text" name="name" value={name} id="name" />
                 <label htmlFor="price">Price:</label>
                 <input onChange={handleChange} type="text" name="price" value={price} id="price" />
-                <LabelPicker labels={labels} setToyToEdit={setToyToEdit} toyLabels={toyLabels}/>
+                <label htmlFor="inStock">In stock:</label>
+                <input type="checkbox" id="inStock" name="inStock" checked={inStock? 'checked':''} onChange={handleChange} />
+                <LabelPicker labels={labels} setToyToEdit={setToyToEdit} toyLabels={toyLabels} />
                 {toyToEdit._id ? <button>Save</button> : <button>Add</button>}
             </form>
         </section>

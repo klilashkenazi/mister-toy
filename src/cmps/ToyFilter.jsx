@@ -3,7 +3,13 @@ import { useEffect, useRef, useState } from "react"
 import { toyService } from "../services/toy.service.js"
 import { utilService } from "../services/util.service.js"
 import { LabelFilter } from "./LabelFilter.jsx"
-
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 export function ToyFilter({ filterBy, onSetFilter, labels }) {
 
@@ -37,53 +43,85 @@ export function ToyFilter({ filterBy, onSetFilter, labels }) {
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
     }
     return (
-        <section className="toy-filter full main-layout">
-            <h2>Toys Filter</h2>
+        <section className="toy-filter">
+            <h2>Filter</h2>
             <form >
-                <label htmlFor="name">Name:</label>
+                {/* <h4>Name</h4>
                 <input type="text"
-                    id="name"
                     name="txt"
                     placeholder="By name"
                     value={filterByToEdit.txt}
                     onChange={handleChange}
-                />
+                /> */}
+                <Box
+                    component="form"
+                    sx={{
+                        '& > :not(style)': { m: 1, width: '25ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                >
+                    <TextField
+                        id="outlined-basic"
+                        label="Name"
+                        variant="outlined"
+                        value={filterByToEdit.txt}
+                        onChange={handleChange}
+                        name="txt"
+                    />
+                    <TextField
+                        id="outlined-number"
+                        label="Price"
+                        type="number"
+                        value={filterByToEdit.price}
+                        onChange={handleChange}
+                        name="price"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
 
-                <label htmlFor="price">Price:</label>
+
+                    {/* <h4>Price</h4>
                 <input type="number"
-                    id="price"
                     name="price"
                     placeholder="By max price"
                     value={filterByToEdit.price}
                     onChange={handleChange}
-                />
-                <label htmlFor="inStock">In stock:</label>
-                <input type="checkbox"
-                    id="inStock"
-                    name="inStock"
-                    value={filterByToEdit.inStock}
-                    onChange={handleChange} />
+                /> */}
+                    <label className="in-stock" htmlFor="inStock">In stock:</label>
+                    <input type="checkbox"
+                        className="in-stock-input"
+                        id="inStock"
+                        name="inStock"
+                        value={filterByToEdit.inStock}
+                        onChange={handleChange} />
 
-                {/* <label htmlFor="labels">Labels:</label>
-                <select id="labels"
-                    name="label"
-                    value={filterByToEdit.label}
-                    onChange={handleChange}>
-                    <option value="">All</option>
-                    {labels.map(label => {
-                        return <option key={label} value={label}>{label}</option>
-                    })}
-                </select> */}
-                <label htmlFor="sort">Sort by:</label>
-                <select id="sort"
+
+                    <LabelFilter labels={labels} setFilterByToEdit={setFilterByToEdit} />
+                    {/* <label htmlFor="sort">Sort by:</label> */}
+                    {/* <select id="sort"
                     name="sortBy"
                     value={filterByToEdit.sortBy}
                     onChange={handleChange}>
                     <option value="">Default</option>
                     <option value="price">Price</option>
 
-                </select>
-                <LabelFilter labels={labels} setFilterByToEdit={setFilterByToEdit}/>
+                </select> */}
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Sort by</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={filterByToEdit.sortBy}
+                            label="Age"
+                            onChange={handleChange}
+                        >
+                            <MenuItem value="">Default</MenuItem>
+                            <MenuItem value="price">Price</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
             </form>
 
         </section>

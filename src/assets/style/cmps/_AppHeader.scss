@@ -1,0 +1,16 @@
+.app-header {
+    padding: 0 1em;
+    border-bottom: 1px solid $clr2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5em;
+    img{
+        height: 6em;
+        cursor: pointer;
+    }
+    .nav-links{
+        display: flex;
+        gap: 1em;
+    }
+}

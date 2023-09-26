@@ -1,0 +1,10 @@
+.toy-filter {
+    padding: 1em;
+    grid-row: 1/-1;
+
+    .in-stock-input {
+        display: inline;
+        width: 1em;
+        align-self: center;
+    }
+}

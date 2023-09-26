@@ -7,6 +7,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
+// import { createTheme } from '@mui/material/styles';
+// import { ThemeProvider } from '@mui/material/styles';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -18,6 +20,23 @@ const MenuProps = {
     },
   },
 };
+
+// const theme = createTheme({
+//   components: {
+//     MuiSelect: {
+//       styleOverrides: {
+//         root: {
+//           // Define your custom styles here
+//           height: '10px', // Adjust the height as needed
+//           backgroundColor: 'aqua'
+//         }
+
+//       },
+//     },
+//   },
+// });
+
+// export default theme;
 
 // const names = [
 //   'Oliver Hansen',
@@ -41,7 +60,7 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export function LabelFilter({labels, setFilterByToEdit}) {
+export function LabelFilter({ labels, setFilterByToEdit }) {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
 
@@ -59,10 +78,13 @@ export function LabelFilter({labels, setFilterByToEdit}) {
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
+      <FormControl sx={{ m: 0, minWidth: '100%'}} className='labels'>
         <InputLabel id="demo-multiple-chip-label">Labels</InputLabel>
+        {/* <ThemeProvider theme={theme}> */}
         <Select
-        name="label"
+          // sx={{height:50}}
+          // size='small'
+          name="label"
           labelId="demo-multiple-chip-label"
           id="demo-multiple-chip"
           multiple
@@ -88,6 +110,7 @@ export function LabelFilter({labels, setFilterByToEdit}) {
             </MenuItem>
           ))}
         </Select>
+        {/* </ThemeProvider> */}
       </FormControl>
     </div>
   );

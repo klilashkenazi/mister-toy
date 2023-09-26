@@ -1,0 +1,19 @@
+// SETUP
+@import 'setup/vars';
+@import 'setup/mixins';
+
+// BASICS
+@import 'base/base';
+@import 'base/helpers';
+@import 'base/layout';
+
+// COMPONENTS
+@import 'cmps/AppHeader';
+@import 'cmps/StoresMap';
+@import 'cmps/ToyFilter';
+@import 'cmps/ToyList';
+@import 'cmps/ToyPreview';
+@import 'cmps/ToyIndex';
+@import 'cmps/About';
+@import 'cmps/ToyEdit';
+@import 'cmps/ToyDetails'

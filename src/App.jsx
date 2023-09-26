@@ -6,7 +6,7 @@ import { ToyEdit } from './pages/ToyEdit'
 import { store } from './store/store'
 import { AppHeader } from './cmps/AppHeader'
 import { ToyChart } from './cmps/ToyChart'
-import './assets/style/main.css'
+import './assets/style/main.scss'
 import { About } from './pages/About'
   export function App() {
 

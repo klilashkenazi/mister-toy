@@ -17,7 +17,7 @@ export function StoresMap() {
 
     return (
         // Important! Always set the container height explicitly
-        <div style={{ height: '400px', width: '70%' }}>
+        <div style={{ height: '300px', width: '500px' }}>
             <GoogleMapReact
                 bootstrapURLKeys={{ key: ApiKey() }}
                 center={coordinates}

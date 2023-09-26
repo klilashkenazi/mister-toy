@@ -62,8 +62,8 @@ function getDefaultFilter() {
 }
 function getEmptyToy() {
     return {
-        name: 'toy',
-        price: 123,
+        name: '',
+        price: 0,
         labels: [],
         // createdAt: Date.now(),
         inStock: true,

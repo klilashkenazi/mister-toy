@@ -49,8 +49,8 @@ export function ToyIndex() {
     }
 
     return (
-        <div>
-            <button><Link to={`/toy/edit`}>Add toy</Link></button>
+        <div className='toy-index'>
+            <button className='btn'><Link to={`/toy/edit`}>Add toy</Link></button>
             {/* <button onClick={onAddToy}>Add toy</button> */}
             <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} labels={labels}/>
             <ToyList toys={toys} onRemoveToy={onRemoveToy} />
