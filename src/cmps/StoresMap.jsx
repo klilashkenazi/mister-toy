@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import GoogleMapReact from 'google-map-react';
-import { ApiKey } from "../services/api-key";
 
 const AnyReactComponent = ({ text }) => <div style={{ fontSize: '20px' }}>{text}</div>;
 
@@ -19,7 +18,7 @@ export function StoresMap() {
         // Important! Always set the container height explicitly
         <div style={{ height: '300px', width: '500px' }}>
             <GoogleMapReact
-                bootstrapURLKeys={{ key: ApiKey() }}
+                bootstrapURLKeys={{ key: import.meta.env.VITE_GOOGLE_API_KEY }}
                 center={coordinates}
                 defaultZoom={zoom}
 

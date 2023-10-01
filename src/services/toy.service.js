@@ -15,7 +15,8 @@ export const toyService = {
     save,
     remove,
     getDefaultFilter,
-    getEmptyToy
+    getEmptyToy,
+    addToyMsg
 }
 
 function query(filterBy = {}) {
@@ -56,6 +57,9 @@ function save(toy) {
     }
 }
 
+function addToyMsg(toyId, txt){
+    return httpService.post(BASE_URL + toyId +'/msg', {txt})
+}
 
 function getDefaultFilter() {
     return { txt: '', price: 0 , inStock:false, label:[], sortBy:''}

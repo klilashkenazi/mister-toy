@@ -17,15 +17,17 @@ export function ToyEdit() {
         if (params.toyId) loadToy()
     }, [])
 
-    function loadToy() {
-        toyService.getById(params.toyId)
-            .then(setToyToEdit)
-            .catch((err) => {
-                console.log('Had issues in toy edit', err)
-                showErrorMsg('Cannot load toy')
-                navigate('/toy')
-            })
+    async function loadToy() {
+        try {
+            const toy = await toyService.getById(params.toyId)
+            setToyToEdit(toy)
+        } catch (err) {
+            console.log('Had issues in toy edit', err)
+            showErrorMsg('Cannot load toy')
+            navigate('/toy')
+        }
     }
+
     function handleChange({ target }) {
         let value = target.value
         const field = target.name
@@ -33,22 +35,21 @@ export function ToyEdit() {
         setToyToEdit(prevToy => ({ ...prevToy, [field]: value }))
     }
 
-    function onSaveToy(ev) {
+    async function onSaveToy(ev) {
         ev.preventDefault()
-        saveToy(toyToEdit)
-            .then(() => {
-                navigate('/toy')
-                setToyToEdit(toyService.getEmptyToy())
-            })
-            .catch(err => {
-                console.log('Cannot update toy', err)
-                showErrorMsg('Cannot update toy')
-            })
+        try {
+            await saveToy(toyToEdit)
+            navigate('/toy')
+            setToyToEdit(toyService.getEmptyToy())
+        } catch (err) {
+            console.log('Cannot update toy', err)
+            showErrorMsg('Cannot update toy')
+        }
 
     }
 
     console.log(toyToEdit)
-    const { name, price, labels: toyLabels, inStock} = toyToEdit
+    const { name, price, labels: toyLabels, inStock } = toyToEdit
 
     return (
         <section className="toy-edit">
@@ -59,7 +60,7 @@ export function ToyEdit() {
                 <label htmlFor="price">Price:</label>
                 <input onChange={handleChange} type="text" name="price" value={price} id="price" />
                 <label htmlFor="inStock">In stock:</label>
-                <input type="checkbox" id="inStock" name="inStock" checked={inStock? 'checked':''} onChange={handleChange} />
+                <input type="checkbox" id="inStock" name="inStock" checked={inStock ? 'checked' : ''} onChange={handleChange} />
                 <LabelPicker labels={labels} setToyToEdit={setToyToEdit} toyLabels={toyLabels} />
                 {toyToEdit._id ? <button>Save</button> : <button>Add</button>}
             </form>

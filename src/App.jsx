@@ -5,9 +5,10 @@ import { ToyIndex } from './pages/ToyIndex'
 import { ToyEdit } from './pages/ToyEdit'
 import { store } from './store/store'
 import { AppHeader } from './cmps/AppHeader'
-import { ToyChart } from './cmps/ToyChart'
 import './assets/style/main.scss'
 import { About } from './pages/About'
+import { Dashboard } from './pages/Dashboard'
+import { Login } from './pages/Login'
   export function App() {
 
     return (
@@ -15,7 +16,6 @@ import { About } from './pages/About'
             <Router>
                 <section className="main-layout app">
                     <AppHeader />
-                    {/* <ToyChart/> */}
                     <main>
                         <Routes>
                             {/* <Route element={<HomePage />} path="/" /> */}
@@ -25,7 +25,8 @@ import { About } from './pages/About'
                             <Route element={<ToyEdit />} path="/toy/edit" />
                             <Route element={<ToyEdit />} path="/toy/edit/:toyId" />
                             <Route element={<About />} path="/about" />
-
+                            <Route element={<Dashboard />} path="/dashboard" />
+                            <Route element={<Login />} path="/auth" />
                         </Routes>
                     </main>
                     {/* <AppFooter /> */}

@@ -12,25 +12,25 @@ export function ToyIndex() {
     const dispatch = useDispatch()
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
-    const labels=useSelector(storeState => storeState.toyModule.labels)
-        useEffect(() => {
-            loadToys()
-                .catch(err => {
-                    console.log('err:', err)
-                    showErrorMsg('Cannot load toys')
-                })
-        }, [filterBy])
-
-
-    function onRemoveToy(toyId) {
-        removeToy(toyId)
-            .then(() => {
-                showSuccessMsg('Toy removed')
-            })
+    const labels = useSelector(storeState => storeState.toyModule.labels)
+    const loggedinUser = useSelector(storeState => storeState.userModule.loggedinUser)
+    useEffect(() => {
+        loadToys()
             .catch(err => {
-                console.log('Cannot remove toy', err)
-                showErrorMsg('Cannot remove toy')
+                console.log('err:', err)
+                showErrorMsg('Cannot load toys')
             })
+    }, [filterBy])
+
+
+    async function onRemoveToy(toyId) {
+        try {
+            await removeToy(toyId)
+            showSuccessMsg('Toy removed')
+        } catch (err) {
+            console.log('Cannot remove toy', err)
+            showErrorMsg('Cannot remove toy')
+        }
     }
 
     // function onAddToy() {
@@ -52,8 +52,8 @@ export function ToyIndex() {
         <div className='toy-index'>
             <button className='btn'><Link to={`/toy/edit`}>Add toy</Link></button>
             {/* <button onClick={onAddToy}>Add toy</button> */}
-            <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} labels={labels}/>
-            <ToyList toys={toys} onRemoveToy={onRemoveToy} />
+            <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} labels={labels} />
+            <ToyList toys={toys} onRemoveToy={onRemoveToy} loggedinUser={loggedinUser} />
         </div>
     )
 }
