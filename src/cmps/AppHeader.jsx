@@ -34,9 +34,12 @@ export function AppHeader() {
                 <NavLink to="/toy">Toys</NavLink>
                 <NavLink to="/about">About us</NavLink>
                 <NavLink to="/dashboard">Dashboard</NavLink>
+                <NavLink to="/user/:id">User details</NavLink>
+
 
                 {user ? <a onClick={onLogout}>Logout</a>
                     : <NavLink to="/auth">Log in</NavLink>}
+
             </nav>
 
         </header>

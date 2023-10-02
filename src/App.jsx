@@ -9,6 +9,7 @@ import './assets/style/main.scss'
 import { About } from './pages/About'
 import { Dashboard } from './pages/Dashboard'
 import { Login } from './pages/Login'
+import { UserDetails } from './pages/UserDetails'
   export function App() {
 
     return (
@@ -27,6 +28,8 @@ import { Login } from './pages/Login'
                             <Route element={<About />} path="/about" />
                             <Route element={<Dashboard />} path="/dashboard" />
                             <Route element={<Login />} path="/auth" />
+                            <Route element={<UserDetails />} path="/user/:id" />
+
                         </Routes>
                     </main>
                     {/* <AppFooter /> */}
